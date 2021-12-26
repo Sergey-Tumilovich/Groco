@@ -956,6 +956,10 @@ section,footer{
     background: $yellow;
     color:$white;
     font-size: 1.3rem;
+
+    h2{
+        display: none;
+    }
 }
 
 @media (max-width:768px){
