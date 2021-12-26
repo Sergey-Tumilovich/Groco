@@ -1,7 +1,7 @@
 //Poppins import
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
-*{//normalizer
+*{//normalizer (with transition effect)
     font-family: 'Poppins', sans-serif;
     margin: 0; padding: 0;
     box-sizing: border-box;
@@ -11,7 +11,7 @@
     transition: .2s linear;
 }
 
-//colors
+//colors and border/shadow
 $yellow: #bac34e;
 $dark: #222;
 $white:#fff;

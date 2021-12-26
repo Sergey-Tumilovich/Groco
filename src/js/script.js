@@ -1,45 +1,24 @@
-//search form (TODO: move onclick to html and do ONE function)
-let searchForm=document.querySelector('.search-form');
+//modals
+const searchForm=document.querySelector('.search-form');
+const shopcart=document.querySelector('.shopping-cart');
+const logform=document.querySelector('.login-form');
+const navbar=document.querySelector('.navbar');
+const modals = [searchForm,shopcart,logform,navbar];
 
-document.querySelector('#search-btn').onclick = ()=>{
-    logform.classList.remove('active');
-    searchForm.classList.toggle('active');
-    shopcart.classList.remove('active');
-    navbar.classList.remove('active');
+//toggle modals when clicking on one of them
+function toggleModals(activeModal){
+    modals.forEach(modal=>modal==activeModal ? 
+        modal.classList.toggle('active') :
+        modal.classList.remove('active'))
 }
 
-//SUBJECT TO REMOVE: shopping card modal
-let shopcart=document.querySelector('.shopping-cart');
-
-document.querySelector('#cart-btn').onclick = ()=>{
-    logform.classList.remove('active');
-    searchForm.classList.remove('active');
-    shopcart.classList.toggle('active');
-    navbar.classList.remove('active');
-}
-
-let logform=document.querySelector('.login-form');
-
-document.querySelector('#login-btn').onclick = ()=>{
-    logform.classList.toggle('active');
-    searchForm.classList.remove('active');
-    shopcart.classList.remove('active');
-    navbar.classList.remove('active');
-}
-
-//same for menu opening on phone
-let navbar=document.querySelector('.navbar');
-
-document.querySelector('#menu-btn').onclick = ()=>{
-    logform.classList.remove('active');
-    searchForm.classList.remove('active');
-    shopcart.classList.remove('active');
-    navbar.classList.toggle('active');
-}
+//btns
+document.querySelector('#search-btn').onclick = () =>toggleModals(searchForm);
+document.querySelector('#cart-btn').onclick = ()=>toggleModals(shopcart);
+document.querySelector('#login-btn').onclick = ()=>toggleModals(logform);
+document.querySelector('#menu-btn').onclick = ()=>toggleModals(navbar);
 
 //scrolling
-//TODO: remove 'active' from all modals
-//from modals or event listener
 window.onscroll=()=>{
     logform.classList.remove('active');
     searchForm.classList.remove('active');
@@ -47,18 +26,15 @@ window.onscroll=()=>{
     navbar.classList.remove('active');
 }
 
-//TODO: make a separate function for a slider
+//slider - select slides
 let slides = document.querySelectorAll('.home .slides-container .slide');
 let index=0;
-//TODO: make prev and next as one function(direction)
-function next(){
+
+//slider (true = right, false = left)
+function slide(direction){
     slides[index].classList.remove('active');
-    index=(index+1)%slides.length;
-    slides[index].classList.add('active');
-}
-//also because of toggle you don't need add/remove
-function prev(){
-    slides[index].classList.remove('active');
-    index=(index-1+slides.length)%slides.length;
+    index=direction ? 
+        (index+1)%slides.length : 
+        (index-1+slides.length)%slides.length;
     slides[index].classList.add('active');
 }
